@@ -20,6 +20,8 @@ public class WordFrequencies
     }
     
     public void findUnique(){
+        myWords.clear();
+        myFreqs.clear();
         FileResource resource = new FileResource();
         
         for(String s : resource.words()){
