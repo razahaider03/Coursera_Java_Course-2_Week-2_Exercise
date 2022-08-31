@@ -9,13 +9,19 @@ import java.util.*;
 import edu.duke.*;
 
 public class CharactersInPlay {
-    private ArrayList<String> charName = new ArrayList();
-    private ArrayList<Integer> charCount = new ArrayList();
-    
+    private ArrayList<String> charName;
+    private ArrayList<Integer> charCount;
+
+    public CharactersInPlay() {
+        this.charName = new ArrayList<String>();
+        this.charCount = new ArrayList<Integer>();
+    }
+
     public void update(String person){
-        int currIndex = charName.indexOf(person);
+        String lowerPerson = person.toLowerCase();
+        int currIndex = charName.indexOf(lowerPerson);
         if(currIndex == -1 ){
-            charName.add(person);
+            charName.add(lowerPerson);
             charCount.add(1);
         } else {
             int freq = charCount.get(currIndex);
@@ -24,29 +30,27 @@ public class CharactersInPlay {
     }
     
     public void findAllCharacters(){
+        charName.clear();
+        charCount.clear();
         FileResource fr = new FileResource();
         for(String person : fr.lines()){
             int index = person.indexOf(".");
             if (index != -1){
-                update(person);
+                String name = person.substring(0,index);
+                update(name);
             }
         }
-        int maxFreq = 0;
-        int currIndex = 0;
-        for(int k = 0; k<charCount.size();k++)
-        if (charCount.get(k)>charCount.get(k)){
-            maxFreq = charCount.get(k);
-            currIndex  = k;
-        }
-        System.out.println("Most Frequent Name " 
-                            + charName.get(currIndex) +"\t" 
-                            + charCount.get(currIndex));
-        charName.clear();
-        charCount.clear();
     }
     
     public void tester(){
         findAllCharacters();
+        
+        for (int k=0; k<charName.size(); k++){
+            System.out.println("Most Frequent Name " 
+                                + charName.get(k) +"\t" 
+                                + charCount.get(k));
+        }
+        
     }
 
 }
