@@ -8,4 +8,6 @@ comment3.params=
 comment3.target=void\ findAllCharacters()
 comment4.params=
 comment4.target=void\ tester()
-numComments=5
+comment5.params=num1\ num2
+comment5.target=void\ charactersWithNumParts(int,\ int)
+numComments=6

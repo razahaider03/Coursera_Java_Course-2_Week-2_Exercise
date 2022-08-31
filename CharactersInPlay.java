@@ -40,17 +40,33 @@ public class CharactersInPlay {
                 update(name);
             }
         }
+        
     }
     
     public void tester(){
         findAllCharacters();
-        
-        for (int k=0; k<charName.size(); k++){
-            System.out.println("Most Frequent Name " 
-                                + charName.get(k) +"\t" 
-                                + charCount.get(k));
+
+        int maxFreq = 0;
+        int maxIndex = 0;
+        for(int k=0;k<charName.size();k++){
+            if(charCount.get(k)>maxFreq){
+                maxFreq = charCount.get(k);
+                maxIndex = k;
+            }
         }
         
+        System.out.println("Most Frequent Name"+ "\t" + charName.get(maxIndex)
+                            + "\t" + charCount.get(maxIndex));
+        charactersWithNumParts(10,15);
     }
+    
+    void charactersWithNumParts(int num1, int num2){
+        for(int k=0;k<charName.size();k++){
+            if(charCount.get(k)>= num1 && charCount.get(k) <= num2){
+                System.out.println("exactly number speaking characters" + "\t"
+                                    + charName.get(k) + " " +  charCount.get(k));
+            }
+    }
+  }
 
 }
